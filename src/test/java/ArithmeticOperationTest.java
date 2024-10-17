@@ -63,4 +63,17 @@ class ArithmeticOperationTest {
         assertEquals(5, sub.execute(4, testStack, table));
         assertEquals(18, testStack.pop());
     }
+
+    @Test
+    void testMultiply() {
+        assertTrue(testStack.empty());
+        Push push3 = new Push("3");
+        Push push4 = new Push("4");
+        assertEquals(1, push3.execute(0, testStack, table));
+        assertEquals(2, push4.execute(1, testStack, table));
+        Multiplication mult = new Multiplication();
+        assertEquals(4, testStack.peek());
+        assertEquals(3, mult.execute(2, testStack, table));
+        assertEquals(12, testStack.pop());
+    }
 }
