@@ -76,4 +76,17 @@ class ArithmeticOperationTest {
         assertEquals(3, mult.execute(2, testStack, table));
         assertEquals(12, testStack.pop());
     }
+
+    @Test
+    void testDivision() {
+        assertTrue(testStack.empty());
+        Push push100 = new Push("100");
+        Push push5 = new Push("5");
+        assertEquals(1, push100.execute(0, testStack, table));
+        assertEquals(2, push5.execute(1, testStack, table));
+        Division div = new Division();
+        assertEquals(5, testStack.peek());
+        assertEquals(3, div.execute(2, testStack, table));
+        assertEquals(20, testStack.pop());
+    }
 }
