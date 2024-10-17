@@ -1,5 +1,6 @@
+package operations;
+
 import main.SymbolTable;
-import operations.*;
 import org.junit.jupiter.api.*;
 import java.util.Stack;
 
