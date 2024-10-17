@@ -89,4 +89,18 @@ class ArithmeticOperationTest {
         assertEquals(3, div.execute(2, testStack, table));
         assertEquals(20, testStack.pop());
     }
+
+    @Test
+    void testDivideByZero() {
+        assertTrue(testStack.empty());
+        Push push5 = new Push("5");
+        Push push0 = new Push("0");
+        assertEquals(1, push5.execute(0, testStack, table));
+        assertEquals(1, push0.execute(0, testStack, table));
+
+        Division div = new Division();
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            div.execute(1, testStack, table);
+        });
+    }
 }
