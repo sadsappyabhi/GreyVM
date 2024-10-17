@@ -1,4 +1,5 @@
 import main.SymbolTable;
+import operations.PopOperation;
 import operations.PushOperation;
 import org.junit.jupiter.api.*;
 import java.util.Stack;
@@ -27,5 +28,14 @@ class ArithmeticOperationTest {
         assertEquals(1, po.execute(0, testStack, table));
         assertEquals(13, testStack.pop());
         assertTrue(testStack.empty());
+    }
+
+    @Test
+    void testPop() {
+        assertTrue(testStack.empty());
+        PopOperation pop = new PopOperation("x");
+        PushOperation push = new PushOperation("123");
+        assertEquals(1, push.execute(0, testStack, table));
+        assertEquals(2, pop.execute(1, testStack, table));
     }
 }
