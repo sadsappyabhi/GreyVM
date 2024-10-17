@@ -1,6 +1,6 @@
 package operations;
-import SymbolTable;
 
+import main.SymbolTable;
 import java.util.Stack;
 /**
  * An object that implements this interface will represent a single statement
