@@ -1,4 +1,5 @@
-import Operations.SymbolTable;
+package operations;
+import SymbolTable;
 
 import java.util.Stack;
 /**
