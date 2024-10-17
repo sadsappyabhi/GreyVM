@@ -4,10 +4,10 @@ import main.SymbolTable;
 
 import java.util.Stack;
 
-public class PopOperation implements Operation {
+public class Pop implements Operation {
     private final String variable;
 
-    public PopOperation(String variable) {
+    public Pop(String variable) {
         this.variable = variable;
     }
 

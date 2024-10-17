@@ -3,11 +3,11 @@ import main.SymbolTable;
 
 import java.util.Stack;
 
-public class PushOperation implements Operation {
+public class Push implements Operation {
     private int value;
     private String variable;
 
-    public PushOperation(String variable) {this.variable = variable;}
+    public Push(String variable) {this.variable = variable;}
 
     @Override
     public int execute(int programCounter, Stack<Integer> stack, SymbolTable table) {
