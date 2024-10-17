@@ -37,7 +37,6 @@ class SymbolTableTest {
 
     @Test
     void getAndSetValue() {
-        table = new SymbolTable();
         table.setValue("x", 0);
         assertEquals(0, table.getValue("x"));
         table.setValue("x", 2);
@@ -46,7 +45,6 @@ class SymbolTableTest {
 
     @Test
     void testException() {
-        table = new SymbolTable();
         table.setValue("x", 0);
 
         Exception exception = assertThrows(RuntimeException.class, () -> {
@@ -72,5 +70,9 @@ class SymbolTableTest {
     }
     @Test
     void contains() {
+        table.setValue("x", 23);
+        assertTrue(table.contains("x"));
+        assertFalse(table.contains("y"));
+        assertEquals(23, table.getValue("x"));
     }
 }
