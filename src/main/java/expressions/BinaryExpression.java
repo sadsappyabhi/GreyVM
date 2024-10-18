@@ -1,7 +1,5 @@
 package expressions;
 
-import jdk.incubator.vector.VectorOperators;
-
 public class BinaryExpression extends AbstractExpression {
     private AbstractExpression leftChild;
     private AbstractExpression rightChild;
