@@ -72,4 +72,21 @@ class CompareOperationTest {
         assertEquals(6, lessThan.execute(5, stack, table));
         assertEquals(0, stack.pop());
     }
+
+    @Test
+    void testCompareLte() {
+        assertEquals(1, push5.execute(0, stack, table));
+        assertEquals(2, push10.execute(1, stack, table));
+        LTE lte = new LTE();
+        assertEquals(3, lte.execute(2, stack, table));
+        assertEquals(1, stack.pop());
+        assertEquals(4, push5.execute(3, stack, table));
+        assertEquals(5, push5again.execute(4, stack, table));
+        assertEquals(6, lte.execute(5, stack, table));
+        assertEquals(1, stack.pop());
+        assertEquals(7, push15.execute(6, stack, table));
+        assertEquals(8, push10.execute(7, stack, table));
+        assertEquals(9, lte.execute(8, stack, table));
+        assertEquals(0, stack.pop());
+    }
 }
