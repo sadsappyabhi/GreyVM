@@ -107,4 +107,22 @@ class CompareOperationTest {
         greaterThan.execute(0, stack, table);
         assertEquals(1, stack.pop());
     }
+
+    @Test
+    void testCompareGte() {
+        assertEquals(1, push5.execute(0, stack, table));
+        assertEquals(2, push10.execute(1, stack, table));
+        GTE gte = new GTE();
+        assertEquals(3, gte.execute(2, stack, table));
+        assertEquals(0, stack.pop());
+        assertEquals(4, push5.execute(3, stack, table));
+        assertEquals(5, push5again.execute(4, stack, table));
+        assertEquals(6, gte.execute(5, stack, table));
+        assertEquals(1, stack.pop());
+
+        assertEquals(7, push15.execute(6, stack, table));
+        assertEquals(8, push10.execute(7, stack, table));
+        assertEquals(9, gte.execute(8, stack, table));
+        assertEquals(1, stack.pop());
+    }
 }
