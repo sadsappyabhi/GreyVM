@@ -59,4 +59,17 @@ class CompareOperationTest {
         assertEquals(6, notEquals.execute(5, stack, table));
         assertEquals(0, stack.pop());
     }
+
+    @Test
+    void testCompareLt() {
+        assertEquals(1, push5.execute(0, stack, table));
+        assertEquals(2, push10.execute(1, stack, table));
+        LT lessThan = new LT();
+        assertEquals(3, lessThan.execute(2, stack, table));
+        assertEquals(1, stack.pop());
+        assertEquals(4, push5.execute(3, stack, table));
+        assertEquals(5, push5again.execute(4, stack, table));
+        assertEquals(6, lessThan.execute(5, stack, table));
+        assertEquals(0, stack.pop());
+    }
 }
