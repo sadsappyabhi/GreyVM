@@ -36,8 +36,9 @@ public class PrintVisitor implements Visitor {
     }
 
     public void preVisit(WhileStatement stmt) {
-        sb.append("  ".repeat(stmtIndentLevel++));
+        sb.append("  ".repeat(stmtIndentLevel));
         sb.append("while ");
+        stmtIndentLevel++;
         bracketIndentLevel++;
     }
 
@@ -49,9 +50,10 @@ public class PrintVisitor implements Visitor {
     }
 
     public void postVisit(WhileStatement stmt) {
-        sb.append("  ".repeat(--bracketIndentLevel));
+        sb.append("  ".repeat(bracketIndentLevel - 1));
         sb.append("}\n");
         stmtIndentLevel--;
+        bracketIndentLevel--;
 
     }
 
