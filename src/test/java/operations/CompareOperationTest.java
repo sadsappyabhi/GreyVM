@@ -1,6 +1,6 @@
 package operations;
 
-import main.SymbolTable;
+import main.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,6 +36,14 @@ class CompareOperationTest {
 
     @Test
     void testCompareEq() {
-
+        assertEquals(1, push5.execute(0, stack, table));
+        assertEquals(2, push10.execute(1, stack, table));
+        EQ equals = new EQ();
+        assertEquals(3, equals.execute(2, stack, table));
+        assertEquals(0, stack.pop());
+        assertEquals(4, push5.execute(3, stack, table));
+        assertEquals(5, push5again.execute(4, stack, table));
+        assertEquals(6, equals.execute(5, stack, table));
+        assertEquals(1, stack.pop());
     }
 }
