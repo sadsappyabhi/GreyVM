@@ -1,4 +1,8 @@
+import main.SymbolTable;
+import operations.Branch;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import schedulers.GreyVMThread;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -6,9 +10,18 @@ import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class GreyVMTest {
-    GreyVM vm;
+class GreyVMThreadTest {
+    GreyVMThread vm;
     Scanner scanner;
+    SymbolTable varTable;
+    SymbolTable branchTable;
+
+    @BeforeEach
+    void setUp() {
+
+        varTable = new SymbolTable();
+        branchTable = new SymbolTable();
+    }
 
     @Test
     void simpleTest() throws IOException {
@@ -22,7 +35,7 @@ class GreyVMTest {
                         + "add\n"
                         + "pop y\n"
         ));
-        vm = new GreyVM(scanner);
+        vm = new GreyVMThread(scanner, varTable, branchTable);
         vm.run();
         assertEquals(12, vm.getValue("x"));
         assertEquals(15, vm.getValue("y"));
@@ -51,7 +64,7 @@ class GreyVMTest {
                         "end: nop\n"
         ));
 
-        vm = new GreyVM(scanner);
+        vm = new GreyVMThread(scanner, varTable, branchTable);
         vm.run();
     }
 
@@ -64,7 +77,7 @@ class GreyVMTest {
                         + "pop y\n"
         ));
 
-        GreyVM vm = new GreyVM(reader);
+        GreyVMThread vm = new GreyVMThread(reader, varTable, branchTable);
         vm.run();
         assertEquals(7, vm.getValue("variable"));
         assertEquals(15, vm.getValue("y"));
@@ -74,10 +87,10 @@ class GreyVMTest {
     public void testPushPopGiven()
     {
         /** #score(4) */
-        GreyVM svm = null;
+        GreyVMThread svm = null;
         try
         {
-            svm = new GreyVM(
+            svm = new GreyVMThread(
                     new Scanner(
                             "push 12\n" +
                                     "pop a\n" +
@@ -88,7 +101,9 @@ class GreyVMTest {
                                     "pop c\n" +
                                     "pop b\n" +
                                     "push 13\n" +
-                                    "pop longVar\n"));
+                                    "pop longVar\n"),
+                    varTable,
+                    branchTable);
         }
         catch (Exception e)
         {

@@ -1,3 +1,5 @@
+package schedulers;
+
 import main.SymbolTable;
 import operations.*;
 
@@ -7,7 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class GreyVM {
+public class GreyVMThread {
     Stack<Integer> stack;
     private SymbolTable varTable;
     private SymbolTable branchTable;
@@ -17,10 +19,10 @@ public class GreyVM {
     /**
      * TODO: put a better description here
      */
-    public GreyVM(Scanner scanner) throws IOException {
+    public GreyVMThread(Scanner scanner, SymbolTable varTable, SymbolTable branchTable) throws IOException {
         stack = new Stack<>();
-        varTable = new SymbolTable();
-        branchTable = new SymbolTable();
+        this.varTable = varTable;
+        this.branchTable = branchTable;
         List<String> commands = new ArrayList<>();
         operationList = new ArrayList<>();
 
