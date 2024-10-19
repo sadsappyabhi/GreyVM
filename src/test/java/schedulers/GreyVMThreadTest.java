@@ -1,8 +1,8 @@
+package schedulers;
+
 import main.SymbolTable;
-import operations.Branch;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import schedulers.GreyVMThread;
 
 import java.io.IOException;
 import java.io.StringReader;
