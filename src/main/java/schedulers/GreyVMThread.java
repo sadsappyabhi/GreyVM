@@ -14,6 +14,7 @@ public class GreyVMThread {
     private SymbolTable varTable;
     private SymbolTable branchTable;
     private List<Operation> operationList;
+    private int priority;
 
 
     /**
@@ -66,6 +67,20 @@ public class GreyVMThread {
 
         }
     }
+
+    /**
+     * Creates a GreyVMThread with a priority designation
+     *
+     * @param scanner the Scanner object containing the program
+     * @param priority the priority of the thread
+     * @throws IOException if there is a problem reading the program from the Scanner.
+     */
+    public GreyVMThread(Scanner scanner, SymbolTable varTable,
+                        SymbolTable branchTable, int priority) throws IOException {
+        this(scanner, varTable, branchTable);
+        this.priority = priority;
+    }
+
 
     /**
      * Runs the loaded program.
