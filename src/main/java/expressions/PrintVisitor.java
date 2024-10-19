@@ -44,7 +44,7 @@ public class PrintVisitor implements Visitor {
 
     public void preBodyVisit(WhileStatement stmt) {
         sb.append("\n");
-        sb.append("  ".repeat(bracketIndentLevel));
+        sb.append("  ".repeat(bracketIndentLevel - 1));
         sb.append("{");
         sb.append("\n");
     }
