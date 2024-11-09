@@ -48,6 +48,40 @@ public class AbstractScheduler implements Scheduler {
             return;
         }
 
-        GreyVMThread
+        ThreadState state =  getCurrentThread().run();
+
+        switch (state.getState()) {
+            case Running -> {
+                break;
+            }
+            case Yielded -> {
+                queue.offer(queue.poll());
+                break;
+            }
+            case Sleeping -> {
+                GreyVMThread sleeper = queue.poll();
+                sleepQueue.offer(new SleeperThread(sleeper, time + state.getTicksToSleep()));
+                break;
+            }
+            case Complete -> {
+
+            }
+            default -> {
+                queue.poll();
+                break;
+            }
+        }
+        tickHook(state.getState());
+    }
+
+    public void tickHook(ThreadState.State state) {
+        // Use for overriding
+    }
+
+    protected void wakeSleepingThreads() {
+        if (!sleepQueue.isEmpty() && time >= sleepQueue.peek().getWakeupTime()) {
+            GreyVMThread wokeThread = sleepQueue.poll().getThread();
+            queue.offer(wokeThread);
+        }
     }
 }

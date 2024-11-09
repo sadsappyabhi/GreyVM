@@ -1,6 +1,7 @@
 package operations;
 
 import main.SymbolTable;
+import schedulers.ThreadState;
 
 import java.util.Stack;
 
@@ -23,9 +24,9 @@ public abstract class ArithmeticOperation implements Operation {
     abstract void performOperation(Stack<Integer> stack);
 
     @Override
-    public int execute(int programCounter, Stack<Integer> stack, SymbolTable table) {
+    public ThreadState execute(int programCounter, Stack<Integer> stack, SymbolTable table) {
         populateOperation(stack);
         performOperation(stack);
-        return ++programCounter;
+        return new ThreadState(ThreadState.State.Running, ++programCounter, 0);
     }
 }

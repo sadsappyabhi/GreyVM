@@ -15,6 +15,7 @@ public class GreyVMThread {
     private SymbolTable branchTable;
     private List<Operation> operationList;
     private int priority;
+    private int programCounter = 0;
 
 
     /**
@@ -85,6 +86,7 @@ public class GreyVMThread {
     /**
      * Runs the loaded program.
      */
+    /*
     public void run() {
         // Execute the program
         int index = 0;
@@ -100,6 +102,21 @@ public class GreyVMThread {
             }
             else index = current.execute(index, stack, varTable);
         }
+    }
+
+     */
+
+    public ThreadState run() {
+
+        Operation nextOp = operationList.get(programCounter);
+        ThreadState state = nextOp.execute(programCounter, stack, varTable);
+        programCounter = state.getNextInstruction();
+
+        if (programCounter >= operationList.size()) {
+            return new ThreadState(ThreadState.State.Complete, 0, 0);
+        }
+
+        return state;
     }
 
     /**

@@ -1,6 +1,8 @@
 package operations;
 
 import main.SymbolTable;
+import schedulers.ThreadState;
+
 import java.util.Stack;
 /**
  * An object that implements this interface will represent a single statement
@@ -17,5 +19,5 @@ public interface Operation {
      * @param stack The Execution Stack
      * @param symbolTable The Symbol Table
      */
-    int execute(int programCounter, Stack<Integer> stack, SymbolTable symbolTable);
+    ThreadState execute(int programCounter, Stack<Integer> stack, SymbolTable symbolTable);
 }

@@ -32,7 +32,7 @@ public class ThreadState {
     /**
      * Returns the number of ticks to sleep
      */
-    private int getTicksToSleep() {
+    public int getTicksToSleep() {
         return ticksToSleep;
     }
 
